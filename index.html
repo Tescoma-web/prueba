@@ -369,6 +369,19 @@
     .why-cd { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.7; }
     .why-icon { display: none; } /* ocultamos el old icon */
 
+
+    /* Leaflet tooltip Google Maps style */
+    .leaflet-tooltip-custom {
+      background: #fff !important;
+      border: none !important;
+      border-radius: 8px !important;
+      box-shadow: 0 2px 12px rgba(0,0,0,.18) !important;
+      padding: 8px 12px !important;
+      font-family: Inter, sans-serif !important;
+    }
+    .leaflet-tooltip-custom::before {
+      border-top-color: #fff !important;
+    }
     /* ── Leaflet overrides ── */
     .leaflet-container { background: #e8eff8 !important; }
     .leaflet-pane, .leaflet-tile, .leaflet-marker-icon,
@@ -1217,32 +1230,57 @@ function mapsUrl(store) {
 let map, markers = {}, selectedStore = null, currentFilter = 'all', nearestId = null;
 
 function initMap() {
-  map = L.map('storeMap', { zoomControl: true, scrollWheelZoom: false }).setView([40.0, -3.5], 6);
+  map = L.map('storeMap', { zoomControl: true, scrollWheelZoom: false, zoomControl: true }).setView([40.2, -3.5], 6);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    maxZoom: 18
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
   }).addTo(map);
 
   STORES.forEach(s => addMarker(s));
 }
 
 function makeIcon(active) {
+  const color = active ? '#1a1a2e' : '#CC0000';
+  const shadow = active ? 'rgba(0,0,0,.45)' : 'rgba(204,0,0,.45)';
   return L.divIcon({
     className: '',
-    html: `<div style="
-      width:32px;height:32px;
-      background:${active ? '#1a1a2e' : '#CC0000'};
-      border-radius:50% 50% 50% 0;
-      transform:rotate(-45deg);
-      border:3px solid #fff;
-      box-shadow:0 3px 10px rgba(${active?'0,0,0':'204,0,0'},.45);
-      display:flex;align-items:center;justify-content:center;
-      transition:all .2s;
-    "><span style="transform:rotate(45deg);font-size:13px">🏪</span></div>`,
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -36]
+    html: `<div style="position:relative;width:32px;height:42px;">
+      <!-- Pin body -->
+      <div style="
+        width:32px;height:32px;
+        background:${color};
+        border-radius:50% 50% 50% 0;
+        transform:rotate(-45deg);
+        border:3px solid #fff;
+        box-shadow:0 3px 12px ${shadow};
+        position:absolute;top:0;left:0;
+        transition:all .2s;
+      "></div>
+      <!-- Inner white dot (Google Maps style) -->
+      <div style="
+        width:10px;height:10px;
+        background:#fff;
+        border-radius:50%;
+        position:absolute;
+        top:11px;left:11px;
+        z-index:1;
+        opacity:0.9;
+      "></div>
+      <!-- Shadow beneath pin -->
+      <div style="
+        width:10px;height:5px;
+        background:rgba(0,0,0,.25);
+        border-radius:50%;
+        position:absolute;
+        bottom:0;left:11px;
+        filter:blur(2px);
+      "></div>
+    </div>`,
+    iconSize: [32, 42],
+    iconAnchor: [16, 42],
+    popupAnchor: [0, -44]
   });
 }
 
@@ -1252,6 +1290,10 @@ function addMarker(store) {
     .bindTooltip(`<strong>${store.city}</strong><br>${store.addr}`, { direction:'top', offset:[0,-32] });
 
   m.on('click', () => selectStore(store.id));
+  m.bindTooltip(`<div style="font-family:Inter,sans-serif;padding:2px 4px"><strong style="font-size:13px;color:#222">${store.city}</strong><br><span style="font-size:11px;color:#666">${store.addr}</span></div>`, {
+    direction:'top', offset:[0,-44], opacity:1,
+    className:'leaflet-tooltip-custom'
+  });
   markers[store.id] = m;
 }
 
