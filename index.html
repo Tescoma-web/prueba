@@ -208,26 +208,20 @@
     .wk-badge { display: inline-block; background: var(--red); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 4px; margin-bottom: 12px; }
     .wk-title { font-weight: 800; font-size: 19px; margin-bottom: 16px; }
     .wk-meta { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-    .meta-r { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+    .meta-r { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--muted); } .meta-r span.mi { flex-shrink: 0; }
     .meta-r .mi { color: var(--red); width: 18px; font-size: 14px; }
     .wk-price { font-size: 24px; font-weight: 900; margin-bottom: 8px; }
     .wk-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
 
     /* ── TESTIMONIOS ── */
     /* ── Testimonios estilo editorial ── */
-    .tst-section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 16px; }
-    .tst-rating-summary { display: flex; align-items: center; gap: 16px; }
-    .tst-big-score { font-size: 64px; font-weight: 900; color: var(--text); line-height: 1; }
-    .tst-score-detail { display: flex; flex-direction: column; gap: 4px; }
-    .tst-stars-lg { color: var(--red); font-size: 20px; letter-spacing: 3px; }
-    .tst-score-label { font-size: 13px; color: var(--muted); }
-    .tst-source { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); font-weight: 500; margin-top: 4px; }
+
     .tst-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
     .tst-card { background: #fff; border-radius: 14px; padding: 28px 26px; border: 1px solid var(--border); transition: all .25s; display: flex; flex-direction: column; gap: 16px; }
     .tst-card:hover { box-shadow: 0 10px 32px rgba(0,0,0,.1); transform: translateY(-3px); border-color: rgba(204,0,0,.2); }
     .tst-top { display: flex; align-items: center; justify-content: space-between; }
     .tst-hdr { display: flex; align-items: center; gap: 12px; }
-    .tst-av { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800; color: #fff; flex-shrink: 0; }
+    .tst-av { display: none; }
     .tst-name { font-weight: 700; font-size: 14px; color: var(--text); }
     .tst-loc { font-size: 11px; color: var(--muted); margin-top: 2px; }
     .tst-verified { font-size: 10px; font-weight: 600; color: #15803d; background: #f0fdf4; padding: 3px 8px; border-radius: 20px; white-space: nowrap; }
@@ -669,7 +663,7 @@
           <span class="wk-badge">Cocina</span>
           <h3 class="wk-title">Taller Práctico de Pasta Fresca</h3>
           <div class="wk-meta">
-            <div class="meta-r"><span class="mi">📅</span>Miércoles, 29 de Abril de 2026</div>
+            <div class="meta-r"><span class="mi">📅</span>Mié. 29 de Abril · 2026</div>
             <div class="meta-r"><span class="mi">🕐</span>17:30 - 18:30</div>
             <div class="meta-r"><span class="mi">⏱️</span>Duración: 60 min aprox.</div>
             <div class="meta-r"><span class="mi">👨‍🍳</span>Sandro Arsena</div>
@@ -682,7 +676,7 @@
           <span class="wk-badge" style="background:#e91e8c">Especial Mamá</span>
           <h3 class="wk-title">Taller Infantil — Día de la Madre</h3>
           <div class="wk-meta">
-            <div class="meta-r"><span class="mi">📅</span>Sábado, 2 de Mayo de 2026</div>
+            <div class="meta-r"><span class="mi">📅</span>Sáb. 2 de Mayo · 2026</div>
             <div class="meta-r"><span class="mi">🕐</span>11:30 - 12:30</div>
             <div class="meta-r"><span class="mi">⏱️</span>Duración: 2 horas aprox.</div>
             <div class="meta-r"><span class="mi">👨‍🍳</span>Esther Candela García</div>
@@ -695,7 +689,7 @@
           <span class="wk-badge">Cocina</span>
           <h3 class="wk-title">Taller de Recetas de Picoteo</h3>
           <div class="wk-meta">
-            <div class="meta-r"><span class="mi">📅</span>Jueves, 7 de Mayo de 2026</div>
+            <div class="meta-r"><span class="mi">📅</span>Jue. 7 de Mayo · 2026</div>
             <div class="meta-r"><span class="mi">🕐</span>18:30 - 19:30</div>
             <div class="meta-r"><span class="mi">⏱️</span>Duración: 60 min aprox.</div>
             <div class="meta-r"><span class="mi">👨‍🍳</span>Chef Manolito</div>
@@ -708,7 +702,7 @@
           <span class="wk-badge">Cocina</span>
           <h3 class="wk-title">Taller de Arroces del Mundo (II)</h3>
           <div class="wk-meta">
-            <div class="meta-r"><span class="mi">📅</span>Martes, 26 de Mayo de 2026</div>
+            <div class="meta-r"><span class="mi">📅</span>Mar. 26 de Mayo · 2026</div>
             <div class="meta-r"><span class="mi">🕐</span>18:30 - 19:30</div>
             <div class="meta-r"><span class="mi">⏱️</span>Duración: 60 min aprox.</div>
             <div class="meta-r"><span class="mi">👨‍🍳</span>Chef Manolito</div>
@@ -725,37 +719,24 @@
 </section>
 
 <!-- TESTIMONIOS -->
-<section class="section" style="background:var(--gray)" itemscope itemtype="https://schema.org/Organization">
+<section class="section" style="background:var(--gray)">
   <div class="si">
-
-    <div class="tst-section-header">
-      <div>
-        <p class="overline">Opiniones verificadas</p>
-        <h2 class="sec-title">Lo que dicen nuestros <span class="ac">clientes</span></h2>
-      </div>
-      <div class="tst-rating-summary">
-        <div class="tst-big-score" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
-          <span itemprop="ratingValue">4.2</span>
-          <meta itemprop="bestRating" content="5"/>
-          <meta itemprop="reviewCount" content="169"/>
-        </div>
-        <div class="tst-score-detail">
-          <div class="tst-stars-lg">★★★★☆</div>
-          <div class="tst-score-label">Basado en 169+ opiniones</div>
-          <div class="tst-source">
-            <div class="g-icon">G</div>
-            Google Maps · Tiendas Tescoma España
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <p class="overline c">Opiniones verificadas</p>
+    <h2 class="sec-title c" style="margin-bottom:12px">Lo que dicen nuestros <span class="ac">clientes</span></h2>
+    <p class="sec-sub c" style="margin-bottom:44px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap">
+      <span style="color:#F59E0B;font-size:18px;letter-spacing:2px">★★★★☆</span>
+      <span style="font-weight:600;color:var(--text)">4.2</span>
+      <span style="color:var(--muted)">· Basado en 169+ opiniones ·</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;font-weight:600;color:var(--text)">
+        <span style="width:18px;height:18px;background:#fff;border:1px solid #ddd;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#4285F4;font-family:serif">G</span>
+        Google Maps · Tiendas Tescoma España
+      </span>
+    </p>
     <div class="tst-grid">
 
       <article class="tst-card" itemscope itemtype="https://schema.org/Review">
         <div class="tst-top">
           <div class="tst-hdr">
-            <div class="tst-av" style="background:#CC0000">MG</div>
             <div>
               <div class="tst-name" itemprop="author">María G.</div>
               <div class="tst-loc">Madrid · C/ Toledo</div>
@@ -775,7 +756,6 @@
       <article class="tst-card" itemscope itemtype="https://schema.org/Review">
         <div class="tst-top">
           <div class="tst-hdr">
-            <div class="tst-av" style="background:#1a1a2e">CM</div>
             <div>
               <div class="tst-name" itemprop="author">Carlos M.</div>
               <div class="tst-loc">Alicante · C/ Casanova</div>
@@ -795,7 +775,6 @@
       <article class="tst-card" itemscope itemtype="https://schema.org/Review">
         <div class="tst-top">
           <div class="tst-hdr">
-            <div class="tst-av" style="background:#15803d">AL</div>
             <div>
               <div class="tst-name" itemprop="author">Ana L.</div>
               <div class="tst-loc">Valencia · Tienda online</div>
@@ -815,7 +794,6 @@
       <article class="tst-card" itemscope itemtype="https://schema.org/Review">
         <div class="tst-top">
           <div class="tst-hdr">
-            <div class="tst-av" style="background:#b45309">DR</div>
             <div>
               <div class="tst-name" itemprop="author">David R.</div>
               <div class="tst-loc">Madrid · Bravo Murillo</div>
@@ -835,7 +813,6 @@
       <article class="tst-card" itemscope itemtype="https://schema.org/Review">
         <div class="tst-top">
           <div class="tst-hdr">
-            <div class="tst-av" style="background:#7c3aed">LS</div>
             <div>
               <div class="tst-name" itemprop="author">Laura S.</div>
               <div class="tst-loc">Murcia · C/ Sociedad</div>
@@ -855,7 +832,6 @@
       <article class="tst-card" itemscope itemtype="https://schema.org/Review">
         <div class="tst-top">
           <div class="tst-hdr">
-            <div class="tst-av" style="background:#0369a1">JP</div>
             <div>
               <div class="tst-name" itemprop="author">Javier P.</div>
               <div class="tst-loc">Zaragoza · C/ San Jorge</div>
