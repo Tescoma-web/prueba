@@ -387,12 +387,25 @@
     .award-card:first-child::before { background: rgba(255,255,255,0.65) !important; }
     .award-card:first-child:hover::before { background: rgba(255,255,255,0.50) !important; }
 
-    /* Títulos por slide — control preciso de líneas */
+
+    /* Slides 2 y 3 — texto grande en 2 líneas, más protagonismo */
+    .hero-slide:nth-child(2) .slide-overlay,
+    .hero-slide:nth-child(3) .slide-overlay {
+      background: linear-gradient(to right,
+        rgba(5,5,5,.96) 45%,
+        rgba(5,5,5,.70) 68%,
+        rgba(5,5,5,.20) 100%);
+    }
     .hero-slide:nth-child(2) .slide-title,
     .hero-slide:nth-child(3) .slide-title {
-      font-size: clamp(24px, 3vw, 40px);
-      line-height: 1.12;
-      max-width: 460px;
+      font-size: clamp(32px, 3.8vw, 50px);
+      line-height: 1.1;
+      max-width: 580px;
+    }
+    .hero-slide:nth-child(2) .slide-content,
+    .hero-slide:nth-child(3) .slide-content {
+      max-width: 100%;
+      padding-left: 48px;
     }
     /* ── Leaflet overrides ── */
     .leaflet-container { background: #e8eff8 !important; }
