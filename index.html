@@ -163,8 +163,21 @@
     .tl-d { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
     /* ── WHY ── */
-    .why-section { background: #191919; padding: 88px 24px; }
-    .why-inner { max-width: 1280px; margin: 0 auto; }
+    .why-section { background: #191919; padding: 88px 0; }
+    .why-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+    /* Franjas blancas laterales */
+    .why-section { position: relative; }
+    .why-section::before, .why-section::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: calc((100% - 1280px) / 2);
+      background: #fff;
+      z-index: 0;
+    }
+    .why-section::before { left: 0; }
+    .why-section::after  { right: 0; }
+    .why-inner { position: relative; z-index: 1; }
     .why-ol { text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .why-ol::before { content: '—'; }
     .why-title { text-align: center; font-size: clamp(28px,4vw,46px); font-weight: 900; color: #fff; margin-bottom: 12px; }
@@ -360,9 +373,9 @@
 
     /* ── Why Tescoma — rediseño editorial ── */
     .why-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
-    .why-card { background: #242424; border-radius: 12px; padding: 28px 22px; border: 1px solid rgba(255,255,255,.05); transition: all .25s; position: relative; overflow: hidden; }
+    .why-card { background: #1E1E1E; border-radius: 12px; padding: 28px 22px; border: 1px solid rgba(255,255,255,.06); transition: all .25s; position: relative; overflow: hidden; }
     .why-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--red); transition: height .35s ease; border-radius: 0 0 3px 3px; }
-    .why-card:hover { background: #2a2a2a; transform: translateY(-4px); border-color: rgba(204,0,0,.2); box-shadow: 0 16px 40px rgba(0,0,0,.3); }
+    .why-card:hover { background: #272727; transform: translateY(-4px); border-color: rgba(204,0,0,.3); box-shadow: 0 16px 40px rgba(0,0,0,.35); }
     .why-card:hover::before { height: 100%; }
     .why-num { font-size: 56px; font-weight: 900; line-height: 1; margin-bottom: 14px; background: linear-gradient(135deg, rgba(204,0,0,0.6), rgba(204,0,0,0.15)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -2px; }
     .why-ct { font-weight: 800; font-size: 16px; color: #fff; margin-bottom: 10px; line-height: 1.2; }
@@ -462,6 +475,77 @@
       .hero-arrow{display:none}
     }
 
+
+    /* ════ ELIGE TU ÁREA — rediseño horizontal ════ */
+    .elige-section { background: var(--off); padding: 72px 24px; }
+    .elige-inner { max-width: 1180px; margin: 0 auto; }
+    .elige-header { text-align: center; margin-bottom: 44px; }
+
+    .elige-cards {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 3px;
+      align-items: stretch;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,.12);
+    }
+
+    /* Card base */
+    .elige-card {
+      padding: 36px 36px 32px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+
+    /* B2C */
+    .elige-b2c { background: var(--red); }
+    .elige-card-icon { display: none; }
+    .elige-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.7); }
+    .elige-card-title { font-size: 26px; font-weight: 900; color: #fff; margin: 0; }
+    .elige-card-desc { font-size: 14px; color: rgba(255,255,255,.75); line-height: 1.6; margin: 0; }
+    .elige-features-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .elige-feat {
+      font-size: 12px; font-weight: 600; color: rgba(255,255,255,.9);
+      background: rgba(255,255,255,.15); padding: 4px 10px; border-radius: 20px;
+    }
+    .elige-cta-b2c {
+      display: inline-flex; align-items: center;
+      background: #fff; color: var(--red);
+      font-size: 14px; font-weight: 700;
+      padding: 13px 24px; border-radius: 8px;
+      transition: all .2s; align-self: flex-start; margin-top: auto;
+      text-decoration: none;
+    }
+    .elige-cta-b2c:hover { background: rgba(255,255,255,.92); transform: translateY(-2px); }
+
+    /* B2B */
+    .elige-b2b { background: #191919; position: relative; overflow: hidden; border-left: 3px solid var(--red); }
+    .elige-b2b::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at top right, rgba(204,0,0,.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .elige-b2b-badge { display: none; }
+    .elige-feat-dark {
+      font-size: 12px; font-weight: 600; color: rgba(255,255,255,.7);
+      background: rgba(255,255,255,.08); padding: 4px 10px; border-radius: 20px;
+    }
+    .elige-b2b-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; }
+    .elige-cta-b2b-primary {
+      flex: 1; text-align: center; background: var(--red); color: #fff;
+      font-size: 14px; font-weight: 800; padding: 13px 20px;
+      border-radius: 8px; transition: all .2s; text-decoration: none;
+      letter-spacing: .3px; min-width: 160px;
+    }
+    .elige-cta-b2b-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(204,0,0,.4); }
+
+    /* Responsive */
+    @media(max-width:900px) {
+      .elige-cards { grid-template-columns: 1fr; } .elige-b2b { border-left: none; border-top: 3px solid var(--red); }
+      .elige-b2b-btns { flex-direction: column; }
+      .elige-card { padding: 28px 24px; }
+    }
     /* ── Cookie Banner ── */
     .cookie-banner {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
@@ -601,7 +685,7 @@
       </div>
       <div class="nav-ctas">
         <a href="https://www.tescomaonline.es/" target="_blank" rel="noopener" class="btn-nv-r">TIENDA ONLINE</a>
-        <a href="https://tescoma-web.ntv.es/login" target="_blank" rel="noopener" class="btn-nv-o">PORTAL PROFESIONAL</a>
+        <a href="https://tescoma-web.github.io/ntv123/" target="_blank" rel="noopener" class="btn-nv-o">PORTAL PROFESIONAL</a>
       </div>
     </div>
   </nav>
@@ -651,7 +735,7 @@
         <p class="slide-eyebrow">Canal Profesional</p>
         <h1 class="slide-title">Portal Profesional<br>para distribuidores</h1>
         <p class="slide-desc">Accede a precios exclusivos, catálogo profesional completo y gestión de pedidos en tiempo real.</p>
-        <a href="https://tescoma-web.ntv.es/login" target="_blank" rel="noopener" class="slide-btn">Acceder al portal →</a>
+        <a href="https://tescoma-web.github.io/ntv123/" target="_blank" rel="noopener" class="slide-btn">Acceder al portal →</a>
       </div>
     </div>
 
@@ -684,6 +768,225 @@
 </div>
 
 <!-- QUIÉNES SOMOS -->
+<section class="section" id="productos" style="background:#fff">
+  <div class="si">
+    <p class="overline c">Nuestros Productos</p>
+    <h2 class="sec-title c reveal">Categorías <span class="ac">Preferidas</span></h2>
+    <p class="sec-sub c">Descubre nuestra amplia gama de utensilios de cocina</p>
+    <div class="cat-grid">
+      <a href="https://www.tescomaonline.es/collections/novedad" target="_blank" rel="noopener" class="cat-card" aria-label="Novedades Tescoma">
+        <img src="https://www.tescomaonline.es/cdn/shop/files/FOTO_CATEGORIA_NOVEDADES_Mesa_de_trabajo_1.jpg?v=1763146672&width=800" alt="Novedades Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease"/>
+        <div class="cat-ov"><span class="cat-name">Novedades</span><span class="cat-link">Ver productos →</span></div>
+      </a>
+      <a href="https://www.tescomaonline.es/collections/outlet" target="_blank" rel="noopener" class="cat-card" aria-label="Outlet Tescoma">
+        <img src="https://www.tescomaonline.es/cdn/shop/files/FOTO_CATEGORIA_OUTLET_Mesa_de_trabajo_1.jpg?v=1763146673&width=800" alt="Outlet Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease"/>
+        <div class="cat-ov"><span class="cat-name">Outlet</span><span class="cat-link">Ver productos →</span></div>
+      </a>
+      <a href="https://www.tescomaonline.es/collections/cocina-saludable" target="_blank" rel="noopener" class="cat-card" aria-label="Cocina saludable Tescoma">
+        <img src="https://www.tescomaonline.es/cdn/shop/files/FOTO_CATEGORIA_COCINA_SALUDABLE_Mesa_de_trabajo_1_c88ac8e8-e15c-43db-9aea-c892dc1ede00.jpg?v=1763146673&width=800" alt="Cocina saludable Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease"/>
+        <div class="cat-ov"><span class="cat-name">Cocina saludable</span><span class="cat-link">Ver productos →</span></div>
+      </a>
+      <a href="https://www.tescomaonline.es/collections/ahorra-espacio" target="_blank" rel="noopener" class="cat-card" aria-label="Ahorra espacio Tescoma">
+        <img src="https://www.tescomaonline.es/cdn/shop/files/FOTO_CATEGORIA_AHORRA_ESPACIO_Mesa_de_trabajo_1_09fbedd8-9e8d-4143-acb1-d2d9b8768a80.jpg?v=1763146672&width=800" alt="Ahorra espacio Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease"/>
+        <div class="cat-ov"><span class="cat-name">Ahorra espacio</span><span class="cat-link">Ver productos →</span></div>
+      </a>
+      <a href="https://www.tescomaonline.es/collections/reposteria" target="_blank" rel="noopener" class="cat-card" aria-label="Repostería Tescoma">
+        <img src="https://www.tescomaonline.es/cdn/shop/files/FOTO_CATEGORIA_REPOSTERIA_Mesa_de_trabajo_1_53d86072-c00a-41d1-90c8-ce2a1bcd8aea.jpg?v=1763146672&width=800" alt="Repostería Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease"/>
+        <div class="cat-ov"><span class="cat-name">Repostería</span><span class="cat-link">Ver productos →</span></div>
+      </a>
+      <a href="https://www.tescomaonline.es/collections/desayuno-y-bruch" target="_blank" rel="noopener" class="cat-card" aria-label="Brunch Tescoma">
+        <img src="https://www.tescomaonline.es/cdn/shop/files/FOTO_CATEGORIA_BRUNCH_Mesa_de_trabajo_1_7fd94592-29eb-4782-8f89-818cf3737d9b.jpg?v=1763146671&width=800" alt="Brunch Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease"/>
+        <div class="cat-ov"><span class="cat-name">Brunch</span><span class="cat-link">Ver productos →</span></div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <a href="https://www.tescomaonline.es/collections/all" target="_blank" rel="noopener" class="btn-primary">Ver todas las categorías →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TALLERES -->
+<section class="elige-section" id="acceso" aria-labelledby="elige-title">
+  <div class="elige-inner">
+
+    <!-- Encabezado -->
+    <div class="elige-header">
+      <p class="overline c">Cómo podemos ayudarte</p>
+      <h2 class="sec-title c" id="elige-title">Elige tu <span class="ac">canal</span></h2>
+      <p class="sec-sub c" style="margin-bottom:0">Tanto si cocinas en casa como si gestionas un negocio de hostelería, tenemos el acceso adecuado para ti.</p>
+    </div>
+
+    <!-- Cards horizontales -->
+    <div class="elige-cards">
+
+      <!-- B2C -->
+      <div class="elige-card elige-b2c">
+        <div class="elige-card-body">
+          <div class="elige-tag">CONSUMIDOR · B2C</div>
+          <h3 class="elige-card-title">Tienda Online</h3>
+          <p class="elige-card-desc">Más de 2500 productos con envío a toda España en 24-48h. Novedades, ofertas y outlet.</p>
+          <div class="elige-features-row">
+            <span class="elige-feat">✓ 2500+ productos</span>
+            <span class="elige-feat">✓ Envío 24-48h</span>
+            <span class="elige-feat">✓ Outlet online</span>
+          </div>
+        </div>
+        <a href="https://www.tescomaonline.es/" target="_blank" rel="noopener" class="elige-cta-b2c">
+          Ir a la tienda →
+        </a>
+      </div>
+
+      <!-- B2B — protagonista -->
+      <div class="elige-card elige-b2b">
+        <div class="elige-card-body">
+          <div class="elige-tag" style="color:rgba(255,255,255,.5)">DISTRIBUIDORES · B2B</div>
+          <h3 class="elige-card-title" style="color:#fff">Portal Profesional</h3>
+          <p class="elige-card-desc" style="color:rgba(255,255,255,.7)">Plataforma exclusiva para distribuidores y profesionales de la hostelería. Gestiona pedidos, facturas y catálogo completo 24/7.</p>
+          <div class="elige-features-row">
+            <span class="elige-feat elige-feat-dark">✓ Catálogo 24/7</span>
+            <span class="elige-feat elige-feat-dark">✓ Tarifas profesionales</span>
+            <span class="elige-feat elige-feat-dark">✓ Carga desde Excel</span>
+            <span class="elige-feat elige-feat-dark">✓ Descarga facturas</span>
+            <span class="elige-feat elige-feat-dark">✓ Pedido rápido</span>
+            <span class="elige-feat elige-feat-dark">✓ Historial completo</span>
+          </div>
+        </div>
+        <div class="elige-b2b-btns">
+          <a href="https://tescoma-web.github.io/ntv123/" target="_blank" rel="noopener" class="elige-cta-b2b-primary">
+            Acceder al portal →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER --><section class="section" id="talleres" style="background:var(--off)">
+  <div class="si">
+    <p class="overline c">Aprende con nosotros</p>
+    <h2 class="sec-title c reveal">Talleres y <span class="ac">Experiencias</span></h2>
+    <p class="sec-sub c">Aprende, cocina y disfruta con nuestros expertos</p>
+    <div class="wk-photos">
+      <div class="wk-photo"><img src="https://www.tescomaonline.es/cdn/shop/articles/Olla_electrica_PREsident_0df0033f-bb28-4e4f-9b3c-4680bffe4a37.jpg?v=1768914212&width=800" loading="lazy" alt="Taller de cocina Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:10px"/></div>
+      <div class="wk-photo"><img src="https://www.tescomaonline.es/cdn/shop/articles/sifon_nata_montada_8f26b8be-f71a-4032-95cb-47c73ba19d00.jpg?v=1768490156&width=800" loading="lazy" alt="Taller repostería Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:10px"/></div>
+      <div class="wk-photo"><img src="https://www.tescomaonline.es/cdn/shop/articles/croquetas_de_calabacin_y_queso.jpg?v=1763114606&width=800" loading="lazy" alt="Masterclass pan artesanal Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:10px"/></div>
+    </div>
+    <div class="filter-pills">
+      <button class="pill active" onclick="filterWk('all',this)">Todos los talleres</button>
+      <button class="pill inactive" onclick="filterWk('cocina',this)">Cocina</button>
+    </div>
+    <div class="wk-grid" id="wkGrid">
+        <article class="wk-card" data-cat="cocina">
+          <span class="wk-badge">Cocina</span>
+          <h3 class="wk-title">Taller Práctico de Pasta Fresca</h3>
+          <div class="wk-meta">
+            <div class="meta-r"><span class="mi">📅</span>Mié. 29 de Abril · 2026</div>
+            <div class="meta-r"><span class="mi">🕐</span>17:30 - 18:30</div>
+            <div class="meta-r"><span class="mi">⏱️</span>Duración: 60 min aprox.</div>
+            <div class="meta-r"><span class="mi">👨‍🍳</span>Sandro Arsena</div>
+            <div class="meta-r"><span class="mi">📍</span><a href="https://maps.app.goo.gl/weyVPJhVGFyLrc5WA" target="_blank" rel="noopener" style="color:var(--red);font-weight:600">Ver ubicación →</a></div>
+          </div>
+          <div class="wk-price">20€ <span style="font-size:13px;color:var(--red);font-weight:600">— Vale dto. 5€</span></div>
+          <p class="wk-desc">Una tarde rodeada de harina y mucha tradición italiana. Aprende a elaborar pasta fresca con tus propias manos. ¡Conviértete en todo un expert@ de la pasta fresca!</p>
+        </article>
+        <article class="wk-card" data-cat="especial">
+          <span class="wk-badge" style="background:#e91e8c">Especial Mamá</span>
+          <h3 class="wk-title">Taller Infantil — Día de la Madre</h3>
+          <div class="wk-meta">
+            <div class="meta-r"><span class="mi">📅</span>Sáb. 2 de Mayo · 2026</div>
+            <div class="meta-r"><span class="mi">🕐</span>11:30 - 12:30</div>
+            <div class="meta-r"><span class="mi">⏱️</span>Duración: 2 horas aprox.</div>
+            <div class="meta-r"><span class="mi">👨‍🍳</span>Esther Candela García</div>
+            <div class="meta-r"><span class="mi">📍</span><a href="https://maps.app.goo.gl/weyVPJhVGFyLrc5WA" target="_blank" rel="noopener" style="color:var(--red);font-weight:600">C/ Hospital, 26 — Elche →</a></div>
+          </div>
+          <div class="wk-price">15€ <span style="font-size:13px;color:var(--red);font-weight:600">— Vale dto. 5€</span></div>
+          <p class="wk-desc">¡Una mañana elaborando recetas deliciosas junto a mamá! Un plan que no vas a querer rechazar. ¡Plazas limitadas!</p>
+        </article>
+        <article class="wk-card" data-cat="cocina">
+          <span class="wk-badge">Cocina</span>
+          <h3 class="wk-title">Taller de Recetas de Picoteo</h3>
+          <div class="wk-meta">
+            <div class="meta-r"><span class="mi">📅</span>Jue. 7 de Mayo · 2026</div>
+            <div class="meta-r"><span class="mi">🕐</span>18:30 - 19:30</div>
+            <div class="meta-r"><span class="mi">⏱️</span>Duración: 60 min aprox.</div>
+            <div class="meta-r"><span class="mi">👨‍🍳</span>Chef Manolito</div>
+            <div class="meta-r"><span class="mi">📍</span><a href="https://maps.app.goo.gl/6h6JEPSBx7kCAGfG9" target="_blank" rel="noopener" style="color:var(--red);font-weight:600">Ver ubicación →</a></div>
+          </div>
+          <div class="wk-price">10€ <span style="font-size:13px;color:var(--red);font-weight:600">— Vale dto. 5€</span></div>
+          <p class="wk-desc">Bocados sorprendentes para tus próximas comidas con amigos. Coge papel y boli, ¡no te pierdas nada! ¡Plazas limitadas!</p>
+        </article>
+        <article class="wk-card" data-cat="cocina">
+          <span class="wk-badge">Cocina</span>
+          <h3 class="wk-title">Taller de Arroces del Mundo (II)</h3>
+          <div class="wk-meta">
+            <div class="meta-r"><span class="mi">📅</span>Mar. 26 de Mayo · 2026</div>
+            <div class="meta-r"><span class="mi">🕐</span>18:30 - 19:30</div>
+            <div class="meta-r"><span class="mi">⏱️</span>Duración: 60 min aprox.</div>
+            <div class="meta-r"><span class="mi">👨‍🍳</span>Chef Manolito</div>
+            <div class="meta-r"><span class="mi">📍</span><a href="https://maps.app.goo.gl/PU43Mh1YPWdLFoqe8" target="_blank" rel="noopener" style="color:var(--red);font-weight:600">Ver ubicación →</a></div>
+          </div>
+          <div class="wk-price">10€ <span style="font-size:13px;color:var(--red);font-weight:600">— Vale dto. 5€</span></div>
+          <p class="wk-desc">¡Repetimos! Aprende los secretos del mejor arroz. Te convertirás en el/la arrocer@ favorit@ de tu grupo. ¡GARANTIZADO! ¡Plazas limitadas!</p>
+        </article>
+      </div>
+    <div style="text-align:center;margin-top:36px">
+      <a href="https://www.tescomaonline.es/pages/talleres-de-cocina-tiendas-tescoma" target="_blank" rel="noopener" class="btn-primary">Ver todos los talleres →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section stores-section" id="tiendas">
+  <div class="si">
+    <p class="overline c">Dónde Encontrarnos</p>
+    <h2 class="sec-title c reveal">Nuestras <span class="ac">Tiendas</span></h2>
+    <p class="sec-sub c">9 tiendas en toda España · Encuentra la más cercana a ti</p>
+
+    <!-- City filters -->
+    <div class="city-filters" id="cityFilters">
+      <button class="cpill active" onclick="filterCity('all',this)">Todas (9)</button>
+      <button class="cpill" onclick="filterCity('Madrid',this)">Madrid (3)</button>
+      <button class="cpill" onclick="filterCity('Alicante',this)">Alicante (1)</button>
+      <button class="cpill" onclick="filterCity('Elche',this)">Elche (1)</button>
+      <button class="cpill" onclick="filterCity('Murcia',this)">Murcia (1)</button>
+      <button class="cpill" onclick="filterCity('Zaragoza',this)">Zaragoza (1)</button>
+      <button class="cpill" onclick="filterCity('Sevilla',this)">Sevilla (1)</button>
+      <button class="cpill" onclick="filterCity('Santander',this)">Santander (1)</button>
+    </div>
+
+    <!-- Mobile tabs -->
+    <div class="stores-mobile-tabs">
+      <div class="mob-tab active" onclick="mobTab('list',this)">📋 Lista</div>
+      <div class="mob-tab" onclick="mobTab('map',this)">🗺️ Mapa</div>
+    </div>
+
+    <!-- Main layout: list + map -->
+    <div class="stores-layout">
+      <div class="store-list-panel" id="storeListPanel"></div>
+      <div id="storeMap"></div>
+    </div>
+
+    <!-- Detail panel -->
+    <div class="store-detail-panel" id="storeDetailPanel">
+      <div>
+        <div class="sdp-city" id="sdpCity"></div>
+        <div class="sdp-addr" id="sdpAddr"></div>
+        <div class="sdp-info" id="sdpInfo"></div>
+      </div>
+      <div class="sdp-btns">
+        <a href="#" id="sdpDirBtn" target="_blank" rel="noopener" class="sdp-btn-r">📍 Cómo llegar</a>
+        <a href="#" id="sdpCallBtn" class="sdp-btn-o">📞 Llamar</a>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:32px;padding-top:28px;border-top:1px solid var(--border)">
+      <p style="color:var(--muted);margin-bottom:16px;font-size:15px">¿No encuentras una tienda cerca? Compra en nuestra tienda online</p>
+      <a href="https://www.tescomaonline.es/" target="_blank" rel="noopener" class="btn-primary">Comprar Online →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ELIGE TU ÁREA -->
 <section class="section" id="historia" style="background:#fff">
   <div class="si">
     <div class="about-grid">
@@ -780,118 +1083,6 @@
 </section>
 
 <!-- CATEGORÍAS -->
-<section class="section" id="productos" style="background:#fff">
-  <div class="si">
-    <p class="overline c">Nuestros Productos</p>
-    <h2 class="sec-title c reveal">Categorías <span class="ac">Preferidas</span></h2>
-    <p class="sec-sub c">Descubre nuestra amplia gama de utensilios de cocina</p>
-    <div class="cat-grid">
-      <a href="https://www.tescomaonline.es/collections/novedad" target="_blank" rel="noopener" class="cat-card" aria-label="Novedades Tescoma">
-        <img src="https://www.tescomaonline.es/cdn/shop/files/FOTO_CATEGORIA_NOVEDADES_Mesa_de_trabajo_1.jpg?v=1763146672&width=800" alt="Novedades Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease"/>
-        <div class="cat-ov"><span class="cat-name">Novedades</span><span class="cat-link">Ver productos →</span></div>
-      </a>
-      <a href="https://www.tescomaonline.es/collections/outlet" target="_blank" rel="noopener" class="cat-card" aria-label="Outlet Tescoma">
-        <img src="https://www.tescomaonline.es/cdn/shop/files/FOTO_CATEGORIA_OUTLET_Mesa_de_trabajo_1.jpg?v=1763146673&width=800" alt="Outlet Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease"/>
-        <div class="cat-ov"><span class="cat-name">Outlet</span><span class="cat-link">Ver productos →</span></div>
-      </a>
-      <a href="https://www.tescomaonline.es/collections/cocina-saludable" target="_blank" rel="noopener" class="cat-card" aria-label="Cocina saludable Tescoma">
-        <img src="https://www.tescomaonline.es/cdn/shop/files/FOTO_CATEGORIA_COCINA_SALUDABLE_Mesa_de_trabajo_1_c88ac8e8-e15c-43db-9aea-c892dc1ede00.jpg?v=1763146673&width=800" alt="Cocina saludable Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease"/>
-        <div class="cat-ov"><span class="cat-name">Cocina saludable</span><span class="cat-link">Ver productos →</span></div>
-      </a>
-      <a href="https://www.tescomaonline.es/collections/ahorra-espacio" target="_blank" rel="noopener" class="cat-card" aria-label="Ahorra espacio Tescoma">
-        <img src="https://www.tescomaonline.es/cdn/shop/files/FOTO_CATEGORIA_AHORRA_ESPACIO_Mesa_de_trabajo_1_09fbedd8-9e8d-4143-acb1-d2d9b8768a80.jpg?v=1763146672&width=800" alt="Ahorra espacio Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease"/>
-        <div class="cat-ov"><span class="cat-name">Ahorra espacio</span><span class="cat-link">Ver productos →</span></div>
-      </a>
-      <a href="https://www.tescomaonline.es/collections/reposteria" target="_blank" rel="noopener" class="cat-card" aria-label="Repostería Tescoma">
-        <img src="https://www.tescomaonline.es/cdn/shop/files/FOTO_CATEGORIA_REPOSTERIA_Mesa_de_trabajo_1_53d86072-c00a-41d1-90c8-ce2a1bcd8aea.jpg?v=1763146672&width=800" alt="Repostería Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease"/>
-        <div class="cat-ov"><span class="cat-name">Repostería</span><span class="cat-link">Ver productos →</span></div>
-      </a>
-      <a href="https://www.tescomaonline.es/collections/desayuno-y-bruch" target="_blank" rel="noopener" class="cat-card" aria-label="Brunch Tescoma">
-        <img src="https://www.tescomaonline.es/cdn/shop/files/FOTO_CATEGORIA_BRUNCH_Mesa_de_trabajo_1_7fd94592-29eb-4782-8f89-818cf3737d9b.jpg?v=1763146671&width=800" alt="Brunch Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform .4s ease"/>
-        <div class="cat-ov"><span class="cat-name">Brunch</span><span class="cat-link">Ver productos →</span></div>
-      </a>
-    </div>
-    <div style="text-align:center;margin-top:36px">
-      <a href="https://www.tescomaonline.es/collections/all" target="_blank" rel="noopener" class="btn-primary">Ver todas las categorías →</a>
-    </div>
-  </div>
-</section>
-
-<!-- TALLERES -->
-<section class="section" id="talleres" style="background:var(--off)">
-  <div class="si">
-    <p class="overline c">Aprende con nosotros</p>
-    <h2 class="sec-title c reveal">Talleres y <span class="ac">Experiencias</span></h2>
-    <p class="sec-sub c">Aprende, cocina y disfruta con nuestros expertos</p>
-    <div class="wk-photos">
-      <div class="wk-photo"><img src="https://www.tescomaonline.es/cdn/shop/articles/Olla_electrica_PREsident_0df0033f-bb28-4e4f-9b3c-4680bffe4a37.jpg?v=1768914212&width=800" loading="lazy" alt="Taller de cocina Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:10px"/></div>
-      <div class="wk-photo"><img src="https://www.tescomaonline.es/cdn/shop/articles/sifon_nata_montada_8f26b8be-f71a-4032-95cb-47c73ba19d00.jpg?v=1768490156&width=800" loading="lazy" alt="Taller repostería Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:10px"/></div>
-      <div class="wk-photo"><img src="https://www.tescomaonline.es/cdn/shop/articles/croquetas_de_calabacin_y_queso.jpg?v=1763114606&width=800" loading="lazy" alt="Masterclass pan artesanal Tescoma" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:10px"/></div>
-    </div>
-    <div class="filter-pills">
-      <button class="pill active" onclick="filterWk('all',this)">Todos los talleres</button>
-      <button class="pill inactive" onclick="filterWk('cocina',this)">Cocina</button>
-    </div>
-    <div class="wk-grid" id="wkGrid">
-        <article class="wk-card" data-cat="cocina">
-          <span class="wk-badge">Cocina</span>
-          <h3 class="wk-title">Taller Práctico de Pasta Fresca</h3>
-          <div class="wk-meta">
-            <div class="meta-r"><span class="mi">📅</span>Mié. 29 de Abril · 2026</div>
-            <div class="meta-r"><span class="mi">🕐</span>17:30 - 18:30</div>
-            <div class="meta-r"><span class="mi">⏱️</span>Duración: 60 min aprox.</div>
-            <div class="meta-r"><span class="mi">👨‍🍳</span>Sandro Arsena</div>
-            <div class="meta-r"><span class="mi">📍</span><a href="https://maps.app.goo.gl/weyVPJhVGFyLrc5WA" target="_blank" rel="noopener" style="color:var(--red);font-weight:600">Ver ubicación →</a></div>
-          </div>
-          <div class="wk-price">20€ <span style="font-size:13px;color:var(--red);font-weight:600">— Vale dto. 5€</span></div>
-          <p class="wk-desc">Una tarde rodeada de harina y mucha tradición italiana. Aprende a elaborar pasta fresca con tus propias manos. ¡Conviértete en todo un expert@ de la pasta fresca!</p>
-        </article>
-        <article class="wk-card" data-cat="especial">
-          <span class="wk-badge" style="background:#e91e8c">Especial Mamá</span>
-          <h3 class="wk-title">Taller Infantil — Día de la Madre</h3>
-          <div class="wk-meta">
-            <div class="meta-r"><span class="mi">📅</span>Sáb. 2 de Mayo · 2026</div>
-            <div class="meta-r"><span class="mi">🕐</span>11:30 - 12:30</div>
-            <div class="meta-r"><span class="mi">⏱️</span>Duración: 2 horas aprox.</div>
-            <div class="meta-r"><span class="mi">👨‍🍳</span>Esther Candela García</div>
-            <div class="meta-r"><span class="mi">📍</span><a href="https://maps.app.goo.gl/weyVPJhVGFyLrc5WA" target="_blank" rel="noopener" style="color:var(--red);font-weight:600">C/ Hospital, 26 — Elche →</a></div>
-          </div>
-          <div class="wk-price">15€ <span style="font-size:13px;color:var(--red);font-weight:600">— Vale dto. 5€</span></div>
-          <p class="wk-desc">¡Una mañana elaborando recetas deliciosas junto a mamá! Un plan que no vas a querer rechazar. ¡Plazas limitadas!</p>
-        </article>
-        <article class="wk-card" data-cat="cocina">
-          <span class="wk-badge">Cocina</span>
-          <h3 class="wk-title">Taller de Recetas de Picoteo</h3>
-          <div class="wk-meta">
-            <div class="meta-r"><span class="mi">📅</span>Jue. 7 de Mayo · 2026</div>
-            <div class="meta-r"><span class="mi">🕐</span>18:30 - 19:30</div>
-            <div class="meta-r"><span class="mi">⏱️</span>Duración: 60 min aprox.</div>
-            <div class="meta-r"><span class="mi">👨‍🍳</span>Chef Manolito</div>
-            <div class="meta-r"><span class="mi">📍</span><a href="https://maps.app.goo.gl/6h6JEPSBx7kCAGfG9" target="_blank" rel="noopener" style="color:var(--red);font-weight:600">Ver ubicación →</a></div>
-          </div>
-          <div class="wk-price">10€ <span style="font-size:13px;color:var(--red);font-weight:600">— Vale dto. 5€</span></div>
-          <p class="wk-desc">Bocados sorprendentes para tus próximas comidas con amigos. Coge papel y boli, ¡no te pierdas nada! ¡Plazas limitadas!</p>
-        </article>
-        <article class="wk-card" data-cat="cocina">
-          <span class="wk-badge">Cocina</span>
-          <h3 class="wk-title">Taller de Arroces del Mundo (II)</h3>
-          <div class="wk-meta">
-            <div class="meta-r"><span class="mi">📅</span>Mar. 26 de Mayo · 2026</div>
-            <div class="meta-r"><span class="mi">🕐</span>18:30 - 19:30</div>
-            <div class="meta-r"><span class="mi">⏱️</span>Duración: 60 min aprox.</div>
-            <div class="meta-r"><span class="mi">👨‍🍳</span>Chef Manolito</div>
-            <div class="meta-r"><span class="mi">📍</span><a href="https://maps.app.goo.gl/PU43Mh1YPWdLFoqe8" target="_blank" rel="noopener" style="color:var(--red);font-weight:600">Ver ubicación →</a></div>
-          </div>
-          <div class="wk-price">10€ <span style="font-size:13px;color:var(--red);font-weight:600">— Vale dto. 5€</span></div>
-          <p class="wk-desc">¡Repetimos! Aprende los secretos del mejor arroz. Te convertirás en el/la arrocer@ favorit@ de tu grupo. ¡GARANTIZADO! ¡Plazas limitadas!</p>
-        </article>
-      </div>
-    <div style="text-align:center;margin-top:36px">
-      <a href="https://www.tescomaonline.es/pages/talleres-de-cocina-tiendas-tescoma" target="_blank" rel="noopener" class="btn-primary">Ver todos los talleres →</a>
-    </div>
-  </div>
-</section>
-
 <!-- TESTIMONIOS -->
 <section class="section" style="background:var(--gray)">
   <div class="si">
@@ -1029,96 +1220,7 @@
 <!-- ══════════════════════════════════════════════
      TIENDAS — Leaflet Map + Store Locator
 ══════════════════════════════════════════════ -->
-<section class="section stores-section" id="tiendas">
-  <div class="si">
-    <p class="overline c">Dónde Encontrarnos</p>
-    <h2 class="sec-title c reveal">Nuestras <span class="ac">Tiendas</span></h2>
-    <p class="sec-sub c">9 tiendas en toda España · Encuentra la más cercana a ti</p>
 
-    <!-- City filters -->
-    <div class="city-filters" id="cityFilters">
-      <button class="cpill active" onclick="filterCity('all',this)">Todas (9)</button>
-      <button class="cpill" onclick="filterCity('Madrid',this)">Madrid (3)</button>
-      <button class="cpill" onclick="filterCity('Alicante',this)">Alicante (1)</button>
-      <button class="cpill" onclick="filterCity('Elche',this)">Elche (1)</button>
-      <button class="cpill" onclick="filterCity('Murcia',this)">Murcia (1)</button>
-      <button class="cpill" onclick="filterCity('Zaragoza',this)">Zaragoza (1)</button>
-      <button class="cpill" onclick="filterCity('Sevilla',this)">Sevilla (1)</button>
-      <button class="cpill" onclick="filterCity('Santander',this)">Santander (1)</button>
-    </div>
-
-    <!-- Mobile tabs -->
-    <div class="stores-mobile-tabs">
-      <div class="mob-tab active" onclick="mobTab('list',this)">📋 Lista</div>
-      <div class="mob-tab" onclick="mobTab('map',this)">🗺️ Mapa</div>
-    </div>
-
-    <!-- Main layout: list + map -->
-    <div class="stores-layout">
-      <div class="store-list-panel" id="storeListPanel"></div>
-      <div id="storeMap"></div>
-    </div>
-
-    <!-- Detail panel -->
-    <div class="store-detail-panel" id="storeDetailPanel">
-      <div>
-        <div class="sdp-city" id="sdpCity"></div>
-        <div class="sdp-addr" id="sdpAddr"></div>
-        <div class="sdp-info" id="sdpInfo"></div>
-      </div>
-      <div class="sdp-btns">
-        <a href="#" id="sdpDirBtn" target="_blank" rel="noopener" class="sdp-btn-r">📍 Cómo llegar</a>
-        <a href="#" id="sdpCallBtn" class="sdp-btn-o">📞 Llamar</a>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:32px;padding-top:28px;border-top:1px solid var(--border)">
-      <p style="color:var(--muted);margin-bottom:16px;font-size:15px">¿No encuentras una tienda cerca? Compra en nuestra tienda online</p>
-      <a href="https://www.tescomaonline.es/" target="_blank" rel="noopener" class="btn-primary">Comprar Online →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ELIGE TU ÁREA -->
-<section class="section" style="background:var(--off)">
-  <div class="si">
-    <div style="text-align:center;margin-bottom:48px">
-      <p class="overline c">Cómo Podemos Ayudarte</p>
-      <h2 class="sec-title c reveal">Elige tu <span class="ac">área</span></h2>
-      <p class="sec-sub c" style="margin-bottom:0">Tanto si cocinas en casa como si gestionas un negocio de hostelería, tenemos el canal adecuado para ti.</p>
-    </div>
-    <div class="choose-grid">
-      <div class="choose-card b2c">
-        <div class="ch-tag">CONSUMIDOR · B2C</div>
-        <div class="ch-icon">🛒</div>
-        <h3 class="ch-title">Tienda Online</h3>
-        <p class="ch-desc">Descubre toda la colección TESCOMA y lleva la mejor cocina a tu hogar. Más de 2500 referencias con envíos rápidos a toda España.</p>
-        <div class="ch-feats">
-          <div class="ch-feat">Catálogo completo con más de 2500 productos</div>
-          <div class="ch-feat">Envío a toda España en 24-48 h</div>
-          <div class="ch-feat">Novedades, ofertas y outlet online</div>
-          <div class="ch-feat">Blog de recetas y vídeos demostrativos</div>
-        </div>
-        <a href="https://www.tescomaonline.es/" target="_blank" rel="noopener" class="btn-b2c">IR A LA TIENDA</a>
-      </div>
-      <div class="choose-card b2b">
-        <div class="ch-tag">PROFESIONAL · B2B</div>
-        <div class="ch-icon">🏢</div>
-        <h3 class="ch-title">Portal Profesional</h3>
-        <p class="ch-desc">Plataforma exclusiva para distribuidores, restaurantes y hoteles. Gestiona tus pedidos con tarifas y condiciones especiales para el sector profesional.</p>
-        <div class="ch-feats">
-          <div class="ch-feat">Precios y tarifas del canal profesional</div>
-          <div class="ch-feat">Historial de pedidos y seguimiento en tiempo real</div>
-          <div class="ch-feat">Catálogo profesional y ofertas exclusivas B2B</div>
-          <div class="ch-feat">Soporte dedicado y gestor de cuenta propio</div>
-        </div>
-        <a href="https://tescoma-web.ntv.es/login" target="_blank" rel="noopener" class="btn-b2b">ACCEDER AL PORTAL PROFESIONAL</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
   </div>
   <div class="footer-main">
@@ -1132,7 +1234,7 @@
       </div>
       <div class="footer-ctas">
         <a href="https://www.tescomaonline.es/" target="_blank" rel="noopener" class="fc r">🛒 Tienda Online B2C</a>
-        <a href="https://tescoma-web.ntv.es/login" target="_blank" rel="noopener" class="fc o">🏢 Portal Profesional (B2B)</a>
+        <a href="https://tescoma-web.github.io/ntv123/" target="_blank" rel="noopener" class="fc o">🏢 Portal Profesional (B2B)</a>
       </div>
     </div>
     <div class="footer-col"><h4>Comprar</h4><ul><li><a href="https://www.tescomaonline.es/collections/novedad" target="_blank" rel="noopener">Novedades</a></li><li><a href="https://www.tescomaonline.es/collections/oferta" target="_blank" rel="noopener">Ofertas</a></li><li><a href="https://www.tescomaonline.es/collections/outlet" target="_blank" rel="noopener">Outlet</a></li><li><a href="https://www.tescomaonline.es/collections/electrodomesticos" target="_blank" rel="noopener">Electrodomésticos</a></li><li><a href="https://www.tescomaonline.es/collections/all" target="_blank" rel="noopener">Ver todo</a></li></ul></div>
