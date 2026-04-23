@@ -5,9 +5,9 @@
  width="441.000000pt" height="417.000000pt" viewBox="0 0 441.000000 417.000000"
  preserveAspectRatio="xMidYMid meet">
  
-<rect width="441" height="417" fill="#CC0000"/>
+<rect width="441" height="417" fill="#ffffff"/>
 <g transform="translate(0.000000,417.000000) scale(0.100000,-0.100000)"
-fill="#ffffff" stroke="none">
+fill="#cc0000" stroke="none">
 <path d="M0 2085 l0 -2085 2205 0 2205 0 0 2085 0 2085 -2205 0 -2205 0 0
 -2085z m2902 1723 c-1 -10 -50 -171 -108 -360 -57 -188 -103 -346 -102 -350 2
 -5 182 -9 401 -8 341 0 398 -2 403 -14 3 -8 -6 -55 -20 -103 -13 -48 -39 -140
