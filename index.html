@@ -594,6 +594,85 @@
       .elige-b2b-btns { flex-direction: column; }
       .elige-card { padding: 28px 24px; }
     }
+
+    /* ── Hamburger + Menú móvil ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px; height: 40px;
+      background: none; border: none;
+      cursor: pointer; padding: 4px;
+      border-radius: 6px;
+      transition: background .2s;
+    }
+    .hamburger:hover { background: rgba(0,0,0,.06); }
+    .hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all .3s ease;
+      transform-origin: center;
+    }
+    /* Cruz animada cuando está abierto */
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Panel desplegable */
+    .mob-menu {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: #fff;
+      border-top: 1px solid #e8e8e8;
+      box-shadow: 0 8px 24px rgba(0,0,0,.10);
+      z-index: 199;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: transform .25s ease, opacity .25s ease;
+      pointer-events: none;
+    }
+    .mob-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mob-menu-inner {
+      display: flex;
+      flex-direction: column;
+      padding: 8px 0 12px;
+      max-width: 100%;
+    }
+    .mob-link {
+      display: block;
+      padding: 14px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #444;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background .15s, color .15s;
+    }
+    .mob-link:last-child { border-bottom: none; }
+    .mob-link:hover { background: rgba(204,0,0,.05); color: var(--red); }
+
+    /* Mostrar hamburger en mobile */
+    @media (max-width: 1024px) {
+      .hamburger { display: flex; }
+      .mob-menu  { display: block; }
+      /* En mobile los dos botones CTA se muestran, más compactos */
+      .btn-nv-r  { font-size: 10px; padding: 8px 12px; }
+      .btn-nv-o  { font-size: 10px; padding: 8px 12px; }
+    }
+    @media (max-width: 480px) {
+      .btn-nv-o  { display: flex; }
+      .btn-nv-r  { font-size: 10px; padding: 7px 10px; }
+      .btn-nv-o  { font-size: 10px; padding: 7px 10px; }
+    }
     /* ── Cookie Banner ── */
     .cookie-banner {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
@@ -896,7 +975,20 @@
       <div class="nav-ctas">
         <a href="https://www.tescomaonline.es/" target="_blank" rel="noopener" class="btn-nv-r">TIENDA ONLINE</a>
         <a href="https://tescoma-web.github.io/ntv123/" target="_blank" rel="noopener" class="btn-nv-o">PORTAL PROFESIONAL</a>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
+    </div>
+    <!-- Menú móvil desplegable -->
+    <div class="mob-menu" id="mobMenu" aria-hidden="true">
+      <nav class="mob-menu-inner">
+        <a href="#productos" class="mob-link" onclick="closeMobMenu()">Top Ventas</a>
+        <a href="#talleres"  class="mob-link" onclick="closeMobMenu()">Talleres</a>
+        <a href="#tiendas"   class="mob-link" onclick="closeMobMenu()">Tiendas</a>
+        <a href="#historia"  class="mob-link" onclick="closeMobMenu()">Historia</a>
+        <a href="#valores"   class="mob-link" onclick="closeMobMenu()">Valores</a>
+      </nav>
     </div>
   </nav>
 </header>
@@ -2007,6 +2099,45 @@ function updateWkModal() {
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWkModal(); });
+</script>
+
+<script>
+/* ── HAMBURGER MENU ── */
+(function() {
+  const btn  = document.getElementById('hamburger');
+  const menu = document.getElementById('mobMenu');
+  if (!btn || !menu) return;
+
+  function openMobMenu() {
+    btn.classList.add('open');
+    menu.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    menu.setAttribute('aria-hidden', 'false');
+  }
+  function closeMobMenuFn() {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+  }
+  window.closeMobMenu = closeMobMenuFn;
+
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (menu.classList.contains('open')) closeMobMenuFn();
+    else openMobMenu();
+  });
+
+  // Cerrar al hacer click fuera
+  document.addEventListener('click', function(e) {
+    if (!menu.contains(e.target) && e.target !== btn) {
+      closeMobMenuFn();
+    }
+  });
+
+  // Cerrar al hacer scroll
+  window.addEventListener('scroll', closeMobMenuFn, {passive: true});
+})();
 </script>
 </body>
 </html>
