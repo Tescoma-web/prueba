@@ -232,6 +232,88 @@
     .wk-price { font-size: 24px; font-weight: 900; margin-bottom: 8px; }
     .wk-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
 
+    /* ── BOTÓN RESERVAR + BARRA PLAZAS ── */
+    .wk-reserve-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; margin-top: 18px;
+      background: var(--red); color: #fff;
+      font-family: var(--font); font-size: 14px; font-weight: 700;
+      padding: 12px 20px; border-radius: 6px; border: none;
+      cursor: pointer; transition: all .2s;
+    }
+    .wk-reserve-btn:hover { background: #a00; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(204,0,0,.3); }
+    .wk-spots-bar { margin-top: 14px; }
+    .wk-spots-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; }
+    .wk-spots-label span:first-child { color: var(--muted); }
+    .spots-count { font-weight: 700; }
+    .spots-count.urgent { color: var(--red); }
+    .wk-progress { height: 5px; background: #eee; border-radius: 99px; overflow: hidden; }
+    .wk-progress-fill { height: 100%; border-radius: 99px; }
+
+    /* ── MODAL ── */
+    .wk-modal-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(10,10,10,.65); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center; padding: 16px;
+      opacity: 0; pointer-events: none; transition: opacity .25s ease;
+    }
+    .wk-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .wk-modal {
+      background: #fff; border-radius: 18px; width: 100%; max-width: 500px;
+      max-height: 92vh; overflow-y: auto;
+      box-shadow: 0 28px 72px rgba(0,0,0,.28);
+      transform: translateY(24px) scale(.97); transition: transform .28s ease;
+    }
+    .wk-modal-overlay.open .wk-modal { transform: translateY(0) scale(1); }
+    .wk-modal-head {
+      background: var(--dark); padding: 22px 26px; border-radius: 18px 18px 0 0;
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .wk-modal-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 5px; }
+    .wk-modal-title { font-size: 19px; font-weight: 800; color: #fff; line-height: 1.2; }
+    .wk-modal-close {
+      background: rgba(255,255,255,.1); border: none; color: rgba(255,255,255,.7);
+      width: 34px; height: 34px; border-radius: 50%; font-size: 18px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all .2s; flex-shrink: 0; margin-left: 14px; font-family: var(--font);
+    }
+    .wk-modal-close:hover { background: rgba(255,255,255,.2); color: #fff; }
+    .wk-modal-body { padding: 26px; }
+    .wk-modal-summary {
+      background: var(--off); border-radius: 10px; padding: 16px 18px;
+      margin-bottom: 22px; display: flex; flex-direction: column; gap: 7px;
+    }
+    .wk-qty-label { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .wk-qty-ctrl { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+    .wk-qty-btn {
+      width: 38px; height: 38px; border-radius: 8px;
+      border: 1.5px solid var(--border); background: #fff;
+      font-size: 20px; color: var(--text); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s; font-family: var(--font);
+    }
+    .wk-qty-btn:hover { border-color: var(--red); color: var(--red); }
+    .wk-qty-btn:disabled { opacity: .35; cursor: not-allowed; }
+    .wk-qty-num { font-size: 22px; font-weight: 800; min-width: 32px; text-align: center; }
+    .wk-qty-max { font-size: 12px; color: var(--muted); }
+    .wk-modal-total {
+      background: #fff7f7; border: 1px solid rgba(204,0,0,.15); border-radius: 10px;
+      padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
+    }
+    .wk-modal-total-label { font-size: 13px; color: var(--muted); }
+    .wk-modal-total-price { font-size: 26px; font-weight: 900; color: var(--red); }
+    .wk-modal-cta {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 15px 24px; background: var(--red); color: #fff;
+      font-family: var(--font); font-size: 15px; font-weight: 700;
+      border: none; border-radius: 8px; cursor: pointer; transition: all .2s; text-decoration: none;
+    }
+    .wk-modal-cta:hover { background: #a00; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(204,0,0,.35); }
+    .wk-modal-note {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin-top: 12px; font-size: 12px; color: #999; text-align: center;
+    }
+
     /* ── TESTIMONIOS ── */
     /* ── Testimonios estilo editorial ── */
 
@@ -1016,8 +1098,15 @@
           </div>
           <div class="wk-price">20€ <span style="font-size:13px;color:var(--red);font-weight:600">— Vale dto. 5€</span></div>
           <p class="wk-desc">Una tarde rodeada de harina y mucha tradición italiana. Aprende a elaborar pasta fresca con tus propias manos. ¡Conviértete en todo un expert@ de la pasta fresca!</p>
+          <div class="wk-spots-bar">
+            <div class="wk-spots-label"><span>Disponibilidad</span><span class="spots-count urgent">⚡ Solo quedan 4 plazas</span></div>
+            <div class="wk-progress"><div class="wk-progress-fill" style="width:40%;background:#CC0000"></div></div>
+          </div>
+          <button class="wk-reserve-btn" onclick="openWkModal({title:'Taller Práctico de Pasta Fresca',date:'Mié. 29 de Abril · 2026',time:'17:30 – 18:30h',duration:'60 min aprox.',instructor:'Sandro Arsena',location:'Ver ubicación →',mapUrl:'https://maps.app.goo.gl/weyVPJhVGFyLrc5WA',price:20,spots:4,shopifyUrl:'https://www.tescomaonline.es/products/cortador-rallador-multifuncion-handy',variantId:56345976570239})">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            Reservar plaza
+          </button>
         </article>
-        <article class="wk-card" data-cat="especial">
           <span class="wk-badge" style="background:#e91e8c">Especial Mamá</span>
           <h3 class="wk-title">Taller Infantil — Día de la Madre</h3>
           <div class="wk-meta">
@@ -1029,10 +1118,15 @@
           </div>
           <div class="wk-price">15€ <span style="font-size:13px;color:var(--red);font-weight:600">— Vale dto. 5€</span></div>
           <p class="wk-desc">¡Una mañana elaborando recetas deliciosas junto a mamá! Un plan que no vas a querer rechazar. ¡Plazas limitadas!</p>
+          <div class="wk-spots-bar">
+            <div class="wk-spots-label"><span>Disponibilidad</span><span class="spots-count urgent">⚡ Solo quedan 3 plazas</span></div>
+            <div class="wk-progress"><div class="wk-progress-fill" style="width:25%;background:#CC0000"></div></div>
+          </div>
+          <button class="wk-reserve-btn" onclick="openWkModal({title:'Taller Infantil — Día de la Madre',date:'Sáb. 2 de Mayo · 2026',time:'11:30 – 12:30h',duration:'2 horas aprox.',instructor:'Esther Candela García',location:'C/ Hospital, 26 — Elche →',mapUrl:'https://maps.app.goo.gl/weyVPJhVGFyLrc5WA',price:15,spots:3,shopifyUrl:'https://www.tescomaonline.es/products/cortador-rallador-multifuncion-handy',variantId:56345976570239})">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            Reservar plaza
+          </button>
         </article>
-        <article class="wk-card" data-cat="cocina">
-          <span class="wk-badge">Cocina</span>
-          <h3 class="wk-title">Taller de Recetas de Picoteo</h3>
           <div class="wk-meta">
             <div class="meta-r"><span class="mi">📅</span>Jue. 7 de Mayo · 2026</div>
             <div class="meta-r"><span class="mi">🕐</span>18:30 - 19:30</div>
@@ -1042,10 +1136,15 @@
           </div>
           <div class="wk-price">10€ <span style="font-size:13px;color:var(--red);font-weight:600">— Vale dto. 5€</span></div>
           <p class="wk-desc">Bocados sorprendentes para tus próximas comidas con amigos. Coge papel y boli, ¡no te pierdas nada! ¡Plazas limitadas!</p>
+          <div class="wk-spots-bar">
+            <div class="wk-spots-label"><span>Disponibilidad</span><span class="spots-count" style="color:#16a34a">8 plazas disponibles</span></div>
+            <div class="wk-progress"><div class="wk-progress-fill" style="width:80%;background:#16a34a"></div></div>
+          </div>
+          <button class="wk-reserve-btn" onclick="openWkModal({title:'Taller de Recetas de Picoteo',date:'Jue. 7 de Mayo · 2026',time:'18:30 – 19:30h',duration:'60 min aprox.',instructor:'Chef Manolito',location:'Ver ubicación →',mapUrl:'https://maps.app.goo.gl/6h6JEPSBx7kCAGfG9',price:10,spots:8,shopifyUrl:'https://www.tescomaonline.es/products/cortador-rallador-multifuncion-handy',variantId:56345976570239})">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            Reservar plaza
+          </button>
         </article>
-        <article class="wk-card" data-cat="cocina">
-          <span class="wk-badge">Cocina</span>
-          <h3 class="wk-title">Taller de Arroces del Mundo (II)</h3>
           <div class="wk-meta">
             <div class="meta-r"><span class="mi">📅</span>Mar. 26 de Mayo · 2026</div>
             <div class="meta-r"><span class="mi">🕐</span>18:30 - 19:30</div>
@@ -1055,6 +1154,14 @@
           </div>
           <div class="wk-price">10€ <span style="font-size:13px;color:var(--red);font-weight:600">— Vale dto. 5€</span></div>
           <p class="wk-desc">¡Repetimos! Aprende los secretos del mejor arroz. Te convertirás en el/la arrocer@ favorit@ de tu grupo. ¡GARANTIZADO! ¡Plazas limitadas!</p>
+          <div class="wk-spots-bar">
+            <div class="wk-spots-label"><span>Disponibilidad</span><span class="spots-count" style="color:#16a34a">10 plazas disponibles</span></div>
+            <div class="wk-progress"><div class="wk-progress-fill" style="width:100%;background:#16a34a"></div></div>
+          </div>
+          <button class="wk-reserve-btn" onclick="openWkModal({title:'Taller de Arroces del Mundo (II)',date:'Mar. 26 de Mayo · 2026',time:'18:30 – 19:30h',duration:'60 min aprox.',instructor:'Chef Manolito',location:'Ver ubicación →',mapUrl:'https://maps.app.goo.gl/PU43Mh1YPWdLFoqe8',price:10,spots:10,shopifyUrl:'https://www.tescomaonline.es/products/cortador-rallador-multifuncion-handy',variantId:56345976570239})">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            Reservar plaza
+          </button>
         </article>
       </div>
     <div style="text-align:center;margin-top:36px">
@@ -1790,6 +1897,99 @@ function showMapBtn() {
 }
 window.addEventListener('resize', showMapBtn, {passive:true});
 showMapBtn();
+</script>
+<div class="wk-modal-overlay" id="wkModalOverlay" onclick="closeWkModalOnBg(event)">
+  <div class="wk-modal" id="wkModal" role="dialog" aria-modal="true">
+    <div class="wk-modal-head">
+      <div>
+        <div class="wk-modal-eyebrow">Reserva tu plaza</div>
+        <div class="wk-modal-title" id="wkModalTitleEl">—</div>
+      </div>
+      <button class="wk-modal-close" onclick="closeWkModal()">✕</button>
+    </div>
+    <div class="wk-modal-body">
+      <div class="wk-modal-summary" id="wkModalSummary"></div>
+      <div class="wk-qty-label">¿Cuántas personas asistirán?</div>
+      <div class="wk-qty-ctrl">
+        <button class="wk-qty-btn" id="wkQtyMinus" onclick="changeQty(-1)">−</button>
+        <div class="wk-qty-num" id="wkQtyNum">1</div>
+        <button class="wk-qty-btn" id="wkQtyPlus" onclick="changeQty(1)">+</button>
+        <span class="wk-qty-max" id="wkQtyMax"></span>
+      </div>
+      <div class="wk-modal-total">
+        <div>
+          <div class="wk-modal-total-label" id="wkTotalLabel">1 persona × 20€</div>
+          <div style="font-size:11px;color:#bbb;margin-top:2px">IVA incluido</div>
+        </div>
+        <div class="wk-modal-total-price" id="wkTotalPrice">20€</div>
+      </div>
+      <a class="wk-modal-cta" id="wkShopifyBtn" href="#" target="_blank" rel="noopener">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+        Añadir al carrito →
+      </a>
+      <p class="wk-modal-note">🔒 Pago 100% seguro en nuestra tienda Tescoma · Email de confirmación automático</p>
+    </div>
+  </div>
+</div>
+
+<script>
+let wkCurrent = {}, wkQty = 1;
+
+function openWkModal(data) {
+  wkCurrent = data; wkQty = 1;
+  document.getElementById('wkModalTitleEl').textContent = data.title;
+  document.getElementById('wkModalSummary').innerHTML = `
+    <div class="meta-r"><span class="mi">📅</span>${data.date}</div>
+    <div class="meta-r"><span class="mi">🕐</span>${data.time}</div>
+    <div class="meta-r"><span class="mi">⏱️</span>Duración: ${data.duration}</div>
+    <div class="meta-r"><span class="mi">👨‍🍳</span>${data.instructor}</div>
+    <div class="meta-r"><span class="mi">📍</span><a href="${data.mapUrl}" target="_blank" rel="noopener" style="color:var(--red);font-weight:600">${data.location}</a></div>
+    <div class="meta-r" style="margin-top:4px;padding-top:10px;border-top:1px solid #e5e5e5">
+      <span class="mi">${data.spots <= 4 ? '⚡' : '👥'}</span>
+      <span style="font-weight:700;color:${data.spots <= 4 ? '#CC0000' : '#16a34a'}">
+        ${data.spots <= 4 ? `¡Solo quedan ${data.spots} plazas!` : `${data.spots} plazas disponibles`}
+      </span>
+    </div>`;
+  document.getElementById('wkQtyMax').textContent = `máx. ${data.spots}`;
+  updateWkModal();
+  document.getElementById('wkModalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeWkModal() {
+  document.getElementById('wkModalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeWkModalOnBg(e) {
+  if (e.target === document.getElementById('wkModalOverlay')) closeWkModal();
+}
+
+function changeQty(delta) {
+  wkQty = Math.max(1, Math.min(wkCurrent.spots || 10, wkQty + delta));
+  updateWkModal();
+}
+
+function updateWkModal() {
+  const price = wkCurrent.price || 0;
+  const total = price * wkQty;
+  const max = wkCurrent.spots || 10;
+  document.getElementById('wkTotalLabel').textContent = `${wkQty} ${wkQty === 1 ? 'persona' : 'personas'} × ${price}€`;
+  document.getElementById('wkTotalPrice').textContent = `${total}€`;
+  document.getElementById('wkQtyMinus').disabled = wkQty <= 1;
+  document.getElementById('wkQtyPlus').disabled = wkQty >= max;
+  document.getElementById('wkQtyNum').textContent = wkQty;
+  const btn = document.getElementById('wkShopifyBtn');
+  if (wkCurrent.variantId) {
+    btn.href = `https://www.tescomaonline.es/cart/${wkCurrent.variantId}:${wkQty}`;
+    btn.innerHTML = `<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>Añadir ${wkQty} plaza${wkQty > 1 ? 's' : ''} al carrito →`;
+  } else {
+    btn.href = wkCurrent.shopifyUrl || '#';
+    btn.innerHTML = `<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>Ir a pagar de forma segura →`;
+  }
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWkModal(); });
 </script>
 </body>
 </html>
