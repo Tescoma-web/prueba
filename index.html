@@ -2625,6 +2625,60 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWkModal
   window.addEventListener('scroll', closeMobMenuFn, {passive: true});
 })();
 </script>
+
+<script>
+/* ── WORKSHOPS SLIDER ── */
+(function(){
+  const track   = document.getElementById('wkTrack');
+  const prev    = document.getElementById('wkPrev');
+  const next    = document.getElementById('wkNext');
+  if (!track || !prev || !next) return;
+
+  let pos = 0;
+
+  function itemWidth() {
+    const el = track.querySelector('.wk-sl-item:not(.hidden)');
+    if (!el) return 296;
+    return el.offsetWidth + 16;
+  }
+
+  function visibleItems() {
+    return Array.from(track.querySelectorAll('.wk-sl-item:not(.hidden)'));
+  }
+
+  function visibleCount() {
+    const vw = track.parentElement.offsetWidth;
+    return Math.max(1, Math.floor(vw / itemWidth()));
+  }
+
+  function update() {
+    const items = visibleItems();
+    const max   = Math.max(0, items.length - visibleCount());
+    pos = Math.min(Math.max(pos, 0), max);
+    track.style.transform = `translateX(-${pos * itemWidth()}px)`;
+    prev.classList.toggle('disabled', pos === 0);
+    next.classList.toggle('disabled', pos >= max);
+  }
+
+  prev.addEventListener('click', () => { pos--; update(); });
+  next.addEventListener('click', () => { pos++; update(); });
+
+  window.filterWkSlider = function(cat, btn) {
+    document.querySelectorAll('.filter-pills .pill').forEach(b => {
+      b.classList.toggle('active',   b === btn);
+      b.classList.toggle('inactive', b !== btn);
+    });
+    track.querySelectorAll('.wk-sl-item').forEach(el => {
+      el.classList.toggle('hidden', cat !== 'all' && el.dataset.cat !== cat);
+    });
+    pos = 0;
+    update();
+  };
+
+  window.addEventListener('resize', () => { pos = 0; update(); }, {passive:true});
+  setTimeout(update, 100);
+})();
+</script>
 </body>
 </html>
       <!-- SLIDE 4 — MES DEL CAFÉ -->
